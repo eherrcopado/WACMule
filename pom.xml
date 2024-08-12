@@ -20,14 +20,8 @@
 	</properties>
 
 	<build>
-		<testResources>
-            <testResource>
-                <directory>src/test/munit</directory>
-                <filtering>true</filtering>
-            </testResource>
-        </testResources>		
-		<plugins>
-			<plugin>
+    <plugins>
+        <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-clean-plugin</artifactId>
             <version>3.0.0</version>
@@ -38,7 +32,7 @@
             <version>${mule.maven.plugin.version}</version>
             <extensions>true</extensions>
             <configuration>
-    <armDeployment>
+    <cloudHubDeployment>
         <uri>https://anypoint.mulesoft.com</uri>
         <muleVersion>${runtime_version}</muleVersion>
         <connectedAppClientId>${clientid}</connectedAppClientId>
@@ -50,63 +44,12 @@
         <workers>${workerCount}</workers>
         <workerType>${workerType}</workerType>
         <objectStoreV2>true</objectStoreV2>
-    </armDeployment>
+    </cloudHubDeployment>
             </configuration>
     </plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-clean-plugin</artifactId>
-				<version>3.0.0</version>
-			</plugin>
-			<plugin>
-				<groupId>org.mule.tools.maven</groupId>
-				<artifactId>mule-maven-plugin</artifactId>
-				<version>${mule.maven.plugin.version}</version>
-				<extensions>true</extensions>
-				<configuration>
-                    <cloudHubDeployment>
-                      <uri>https://anypoint.mulesoft.com</uri>
-                      <muleVersion>${runtime_version}</muleVersion>
-                      <connectedAppClientId>${clientid}</connectedAppClientId>
-                      <connectedAppClientSecret>${clientsecret}</connectedAppClientSecret>
-                      <connectedAppGrantType>client_credentials</connectedAppGrantType>
-                      <applicationName>${appname}</applicationName>
-                      <environment>${environment}</environment>
-                      <workers>${workerCount}</workers>
-                      <workerType>${workerType}</workerType>
-                      <objectStoreV2>true</objectStoreV2>
-                    </cloudHubDeployment>
-				</configuration>
-			</plugin>
-			<!-- Commented Out Plugin detail to avoid issue with Enterprise Unit Testing <plugin>
-				<groupId>com.mulesoft.munit.tools</groupId>
-				<artifactId>munit-maven-plugin</artifactId>
-				<version>${munit.version}</version>
-				<executions>
-					<execution>
-						<id>test</id>
-						<phase>test</phase>
-						<goals>
-							<goal>test</goal>
-							<goal>coverage-report</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<coverage>
-						<runCoverage>true</runCoverage>
-						<failBuild>true</failBuild>
-						<requiredApplicationCoverage>80</requiredApplicationCoverage>
-						<formats>
-							<format>console</format>
-							<format>html</format>
-						</formats>
-					</coverage>
-				</configuration>
-			</plugin> -->
-		</plugins>
-	</build>
-
+    </plugins>
+</build>
+		
 	<dependencies>
         <dependency>
             <groupId>org.mule.connectors</groupId>
